@@ -18,16 +18,17 @@ resource "aws_launch_template" "ecs-asg-template" {
     subnet_id = aws_subnet.vpc_prod_subnet[1].id
   }
 
-  user_data = base64encode(<<-EOF
-              #!/bin/bash
-              sudo su
-             amazon-linux-extras install ecs -y
-              systemctl start ecs
-             echo ECS_CLUSTER=python-project-cluster >> /etc/ecs/ecs.config
-             systemctl start ecs
-             systemctl start ecs
-            EOF
-  )
+   user_data = base64encode(file("./ecs-instance.sh"))
+  #  base64encode(<<-EOF
+  #             #!/bin/bash
+  #             sudo su
+  #             amazon-linux-extras install ecs -y
+  #             systemctl start ecs
+  #             echo ECS_CLUSTER=python-project-cluster >> /etc/ecs/ecs.config
+  #             systemctl start ecs
+  #             systemctl start ecs
+  #           EOF
+  # )
 
   tags = {
     Name = "ecs-asg-template"
