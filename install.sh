@@ -5,10 +5,10 @@ sudo apt-get install nginx -y
 # server {
 #     listen 80;
 
-#     server_name example.com;  # Replace with your domain or server IP
+#     server_name www.krmkhub.in;  # Replace with your domain or server IP
 
 #     location / {
-#         proxy_pass http://<target_server_ip_or_dns>:<target_port>;
+#         proxy_pass http:/70.0.2.181/:80;
 #         proxy_set_header Host $host;
 #         proxy_set_header X-Real-IP $remote_addr;
 #         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
